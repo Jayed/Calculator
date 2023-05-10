@@ -12,14 +12,15 @@ function addOperator(opt) {
   if (exp === "") {
     exp += "0";
   }
-
-  // if last position of exp is operator
-  let temp = exp.slice(-1);
-  if (temp === "+" || temp === "-" || temp === "*" || temp === "/") {
-    if (temp !== opt) {
+  // Using string like array indexing by split("")
+  let lIndex = exp.slice(-1); //lIndex = last index
+  if (lIndex === "+" || lIndex === "-" || lIndex === "*" || lIndex === "/") {
+    if (lIndex !== opt) {
       //alert("operator is already existing so cannot add opt here.")
       let lastPosition = exp.length - 1;
-      exp = exp.substring(0, lastPosition) + opt;
+      let strTemp = exp.split(""); // convert to str array
+      strTemp[lastPosition] = opt; 
+      exp = strTemp.join("") ; // convert back to string
       display.innerHTML = exp;
     }
   } else {
